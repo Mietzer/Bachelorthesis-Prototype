@@ -1,0 +1,14 @@
+{
+  "name": "core",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Geteilte Logik/Typen fuer display und app (noch leer).",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ba-prototyp",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Prototyp fuer die Bachelorarbeit: barrierefreie digitale Beschilderung (Wand-Display + Blinden-App).",
+  "workspaces": [
+    "app/*"
+  ],
+  "scripts": {
+    "dev:display": "npm run dev -w display",
+    "dev:app": "npm run start -w app",
+    "build:core": "npm run build -w core",
+    "build:display": "npm run build -w display"
+  }
+}
