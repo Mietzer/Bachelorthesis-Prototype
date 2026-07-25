@@ -10,3 +10,10 @@
   font-size: 0.95em;
   padding-inline: 0.2em;
 }
+
+.fontScale {
+  min-width: 4ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

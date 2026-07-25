@@ -7,6 +7,7 @@ export type ViewControlsProps = ViewSettings
 export function ViewControls({
   highContrast,
   toggleContrast,
+  fontScalePercent,
   increaseFontSize,
   decreaseFontSize,
   canIncreaseFontSize,
@@ -22,6 +23,10 @@ export function ViewControls({
         Schrift A<span aria-hidden="true">−</span>
         <span className="visually-hidden"> kleiner</span>
       </Button>
+
+      <span className={styles.fontScale} aria-live="polite">
+        {fontScalePercent} %<span className="visually-hidden"> Schriftgröße</span>
+      </span>
 
       <Button onClick={increaseFontSize} disabled={!canIncreaseFontSize}>
         A<span aria-hidden="true">+</span>

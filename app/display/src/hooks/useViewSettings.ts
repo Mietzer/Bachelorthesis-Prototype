@@ -1,10 +1,18 @@
-import { useMemo, useState, type CSSProperties } from 'react'
+import { useCallback, useMemo, useState, type CSSProperties } from 'react'
 
-const FONT_SCALES = [1, 1.15, 1.3, 1.5] as const
+const MIN_FONT_SCALE = 1
+const MAX_FONT_SCALE = 2
+const FONT_SCALE_STEP = 0.25
+
+function clampFontScale(scale: number): number {
+  return Math.min(MAX_FONT_SCALE, Math.max(MIN_FONT_SCALE, scale))
+}
 
 export interface ViewSettings {
   highContrast: boolean
   toggleContrast: () => void
+  /** Current font scale as a percentage, 100 to 200. */
+  fontScalePercent: number
   increaseFontSize: () => void
   decreaseFontSize: () => void
   canIncreaseFontSize: boolean
@@ -20,26 +28,27 @@ export interface ViewSettingsResult extends ViewSettings {
 }
 
 export function useViewSettings(): ViewSettingsResult {
-  const [scaleIndex, setScaleIndex] = useState(0)
+  const [fontScale, setFontScale] = useState(MIN_FONT_SCALE)
   const [highContrast, setHighContrast] = useState(false)
 
-  const lastIndex = FONT_SCALES.length - 1
+  const changeFontScale = useCallback((step: number) => {
+    setFontScale((current) => clampFontScale(current + step))
+  }, [])
 
   return useMemo(
     () => ({
       highContrast,
       toggleContrast: () => setHighContrast((active) => !active),
-      increaseFontSize: () =>
-        setScaleIndex((current) => Math.min(lastIndex, current + 1)),
-      decreaseFontSize: () =>
-        setScaleIndex((current) => Math.max(0, current - 1)),
-      canIncreaseFontSize: scaleIndex < lastIndex,
-      canDecreaseFontSize: scaleIndex > 0,
+      fontScalePercent: Math.round(fontScale * 100),
+      increaseFontSize: () => changeFontScale(FONT_SCALE_STEP),
+      decreaseFontSize: () => changeFontScale(-FONT_SCALE_STEP),
+      canIncreaseFontSize: fontScale < MAX_FONT_SCALE,
+      canDecreaseFontSize: fontScale > MIN_FONT_SCALE,
       containerProps: {
         'data-contrast': highContrast ? 'high' : 'default',
-        style: { '--font-scale': FONT_SCALES[scaleIndex] } as CSSProperties,
+        style: { '--font-scale': fontScale } as CSSProperties,
       },
     }),
-    [highContrast, scaleIndex, lastIndex],
+    [changeFontScale, fontScale, highContrast],
   )
 }
