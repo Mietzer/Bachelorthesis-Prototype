@@ -1,0 +1,35 @@
+.button {
+  min-height: var(--target-min-height);
+  padding: var(--space-xs) var(--space-m);
+  background: var(--color-background);
+  color: var(--color-text);
+  border: var(--border-thin) solid var(--color-outline);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-surface);
+}
+
+.button:disabled {
+  color: var(--color-text-disabled);
+  border-color: var(--color-outline-disabled);
+  cursor: default;
+}
+
+.active,
+.button[aria-pressed='true'] {
+  background: var(--color-active-surface);
+  color: var(--color-active-text);
+  font-weight: 700;
+}
+
+.active:hover:not(:disabled),
+.button[aria-pressed='true']:hover:not(:disabled) {
+  background: var(--color-active-surface);
+}
+
+.fullWidth {
+  width: 100%;
+}

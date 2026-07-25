@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  padding: var(--space-m) var(--space-l);
+  border-bottom: var(--border-thin) solid var(--color-border);
+}
+
+.context {
+  margin: 0;
+  font-size: 0.95em;
+  color: var(--color-text-muted);
+}

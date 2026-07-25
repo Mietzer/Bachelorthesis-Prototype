@@ -1,0 +1,42 @@
+{
+  "location": {
+    "code": "HQ",
+    "department": "Fakultät Informatik"
+  },
+  "date": "2026-07-15",
+  "entries": [
+    {
+      "id": "entry-001",
+      "title": "Conversational English",
+      "start": "08:00",
+      "end": "09:30",
+      "room": "HQ.007",
+      "status": "scheduled"
+    },
+    {
+      "id": "entry-002",
+      "title": "Mathematik 1",
+      "start": "09:45",
+      "end": "11:15",
+      "room": "HQ.405",
+      "status": "cancelled"
+    },
+    {
+      "id": "entry-003",
+      "title": "Programmieren 2",
+      "start": "11:30",
+      "end": "13:00",
+      "room": "HQ.206",
+      "previousRoom": "HQ.007",
+      "status": "relocated"
+    },
+    {
+      "id": "entry-004",
+      "title": "Datenbanken",
+      "start": "14:15",
+      "end": "15:45",
+      "room": "HQ.206",
+      "status": "scheduled"
+    }
+  ]
+}

@@ -1,4 +1,20 @@
-// Bewusst leer: dieses Package soll die Logik/Typen aufnehmen,
-// die sich display (Wand-Display, P2/P3) und app (Blinden-App, P1)
-// teilen (z.B. Wegfindungslogik, Domaenentypen, API-Client).
-export {};
+import timetableData from './data/timetable.json';
+import type { Timetable } from './types';
+
+export type {
+  EntryStatus,
+  Location,
+  Timetable,
+  TimetableEntry,
+} from './types';
+
+export {
+  formatDate,
+  formatTime,
+  formatTimeRange,
+  getChanges,
+  getScheduled,
+  getStatusLabel,
+} from './timetable';
+
+export const timetable: Timetable = timetableData as Timetable;

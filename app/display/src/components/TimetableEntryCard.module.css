@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.1em var(--space-l);
+  padding: var(--space-s) var(--space-l);
+  background: var(--color-surface);
+}
+
+.changed {
+  border-left: var(--border-status) solid var(--color-accent);
+}
+
+.badge {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.previousRoom {
+  color: var(--color-text-muted);
+}
+
+/* High contrast turns the surface black, so the card needs an outline instead. */
+:global([data-contrast='high']) .card {
+  border: var(--border-thick) solid var(--color-border);
+}
+
+:global([data-contrast='high']) .changed {
+  border-left-width: calc(var(--border-status) + 4px);
+}

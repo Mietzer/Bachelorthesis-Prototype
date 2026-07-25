@@ -1,12 +1,12 @@
-# BA-Prototyp: Barrierefreie digitale Beschilderung
+# BA Prototype: Accessible Digital Signage
 
-Monorepo (npm workspaces) fuer den Umsetzungsprototyp der Bachelorarbeit.
+Monorepo (npm workspaces) for the implementation prototype of the bachelor thesis.
 
 ## Packages (`app/*`)
 
-- **`app/core`** — geteilte Logik/Typen fuer `display` und `app` (aktuell leer, Platzhalter).
-- **`app/display`** — React + Vite. Wand-Display: Informationsquelle für Menschen mit starker Sehbehinderung und normaler Sehfähigkeit.
-- **`app/app`** — React Native + Expo. Eigenstaendige App fuer blinde Nutzer.
+- **`app/core`** — shared logic/types for `display` and `app`; contains the static data source `src/data/timetable.json`.
+- **`app/display`** — React + Vite. Wall display: information source for people with severe visual impairment and for sighted users.
+- **`app/app`** — React Native + Expo. Standalone app for blind users.
 
 ## Setup
 
@@ -14,18 +14,23 @@ Monorepo (npm workspaces) fuer den Umsetzungsprototyp der Bachelorarbeit.
 npm install
 ```
 
-## Entwicklung
+## Development
 
 ```bash
-npm run dev:display   # Vite Dev-Server (app/display)
-npm run dev:app        # Expo Dev-Server (app/app)
+npm run dev:display   # Vite dev server (app/display)
+npm run dev:app        # Expo dev server (app/app)
 ```
 
-## Struktur
+## Structure
 
 ```
 app/
-  core/       # geteilte Logik (leer)
+  core/       # shared logic + sample data (timetable.json)
   display/    # React + Vite
+    src/
+      components/   # reusable UI building blocks (ui/ = generic base)
+      pages/        # content per area
+      hooks/        # state (view settings, current time)
+      styles/       # colors.css + metrics.css (design tokens)
   app/        # React Native + Expo
 ```

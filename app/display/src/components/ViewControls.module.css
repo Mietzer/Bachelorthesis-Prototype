@@ -1,0 +1,12 @@
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-xs) var(--space-s);
+  border: var(--border-thick) solid var(--color-outline);
+}
+
+.label {
+  font-size: 0.95em;
+  padding-inline: 0.2em;
+}
