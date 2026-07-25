@@ -2,14 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-xl);
+  gap: var(--space-l);
   flex-wrap: wrap;
   padding: var(--space-m) var(--space-l);
-  border-bottom: var(--border-thin) solid var(--color-border);
+  background: var(--color-header-background);
+  color: var(--color-header-text);
+  border-bottom: var(--border-thin) solid var(--color-header-border);
 }
 
-.context {
+.title {
   margin: 0;
-  font-size: 0.95em;
-  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.2;
 }

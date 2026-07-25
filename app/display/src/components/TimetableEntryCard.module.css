@@ -1,31 +1,42 @@
 .card {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 0.1em var(--space-l);
-  padding: var(--space-s) var(--space-l);
+  gap: var(--space-xs) var(--space-m);
+  padding: var(--space-s) var(--space-m);
   background: var(--color-surface);
-}
-
-.changed {
-  border-left: var(--border-status) solid var(--color-accent);
+  border: var(--border-thin) solid var(--color-border);
+  border-radius: var(--radius);
 }
 
 .badge {
+  flex: none;
+  padding: 0.1em 0.5em;
+  border: var(--border-thin) solid currentColor;
+  border-radius: var(--radius-s);
+  font-size: 0.75em;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.previousRoom {
+.changed {
+  color: var(--color-status-changed);
+}
+
+.scheduled {
+  color: var(--color-status-scheduled);
+}
+
+.time {
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.room {
+  margin-left: auto;
   color: var(--color-text-muted);
-}
-
-/* High contrast turns the surface black, so the card needs an outline instead. */
-:global([data-contrast='high']) .card {
-  border: var(--border-thick) solid var(--color-border);
-}
-
-:global([data-contrast='high']) .changed {
-  border-left-width: calc(var(--border-status) + 4px);
 }

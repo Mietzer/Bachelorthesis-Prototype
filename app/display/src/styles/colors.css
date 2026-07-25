@@ -1,35 +1,89 @@
-:root {
-  --color-background: #ffffff;
-  --color-surface: #ececee;
+:root,
+[data-contrast='default'] {
+  --color-background: #eef1f5;
+  --color-surface: #ffffff;
 
-  --color-text: #17171a;
-  --color-text-muted: #46464c;
-  --color-text-disabled: #6e6e75;
+  --color-text: #16202c;
+  --color-text-muted: #5b6875;
+  --color-text-disabled: #9aa3ad;
 
-  --color-border: #b9b9bf;
-  --color-outline: #17171a;
-  --color-outline-disabled: #c7c7cc;
+  --color-border: #c9d2dc;
+  --color-outline: #1b3a5e;
+  --color-outline-disabled: #c9d2dc;
 
-  --color-accent: #17171a;
-  --color-active-surface: #17171a;
+  --color-accent: #1b3a5e;
+  --color-active-surface: #1b3a5e;
   --color-active-text: #ffffff;
-  --color-focus: #17171a;
+  --color-focus: #1b3a5e;
+
+  --color-status-changed: #b5231d;
+  --color-status-scheduled: #4a5766;
+
+  --color-header-background: #1b3a5e;
+  --color-header-text: #ffffff;
+  --color-header-border: #1b3a5e;
+  --color-header-focus: #ffffff;
+
+  /* The active area is marked by its filled surface, no extra ring needed. */
+  --ring-active: none;
+}
+
+[data-contrast='dark'] {
+  --color-background: #000000;
+  --color-surface: #000000;
+
+  --color-text: #ffffff;
+  --color-text-muted: #d4d4d4;
+  --color-text-disabled: #8a8a8a;
+
+  --color-border: #ffffff;
+  --color-outline: #ffffff;
+  --color-outline-disabled: #8a8a8a;
+
+  --color-accent: #ffffff;
+  --color-active-surface: #000000;
+  --color-active-text: #ffffff;
+  --color-focus: #ffff00;
+
+  --color-status-changed: #ff6b6b;
+  --color-status-scheduled: #ffffff;
+
+  --color-header-background: #000000;
+  --color-header-text: #ffffff;
+  --color-header-border: #ffffff;
+  --color-header-focus: #ffff00;
+
+  --ring-active:
+    inset 0 0 0 var(--border-thin) var(--color-background),
+    inset 0 0 0 calc(var(--border-thin) * 2) var(--color-outline);
 }
 
 [data-contrast='high'] {
   --color-background: #000000;
   --color-surface: #000000;
 
-  --color-text: #ffffff;
-  --color-text-muted: #ffffff;
-  --color-text-disabled: #9a9a9a;
+  --color-text: #ffd400;
+  --color-text-muted: #ffd400;
+  --color-text-disabled: #8a7400;
 
-  --color-border: #ffffff;
-  --color-outline: #ffffff;
-  --color-outline-disabled: #9a9a9a;
+  --color-border: #ffd400;
+  --color-outline: #ffd400;
+  --color-outline-disabled: #8a7400;
 
-  --color-accent: #ffffff;
-  --color-active-surface: #ffffff;
-  --color-active-text: #000000;
-  --color-focus: #ffff00;
+  --color-accent: #ffd400;
+  --color-active-surface: #000000;
+  --color-active-text: #ffd400;
+  --color-focus: #ffffff;
+
+  --color-status-changed: #ff7a45;
+  --color-status-scheduled: #ffd400;
+
+  --color-header-background: #000000;
+  --color-header-text: #ffd400;
+  --color-header-border: #ffd400;
+  --color-header-focus: #ffffff;
+
+  --ring-active:
+    inset 0 0 0 var(--border-thin) var(--color-background),
+    inset 0 0 0 calc(var(--border-thin) * 2) var(--color-outline);
 }

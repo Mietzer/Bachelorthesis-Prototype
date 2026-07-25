@@ -1,14 +1,27 @@
+/* The controls sit on the header bar, so they re-point the shared tokens at the
+   header palette instead of shipping their own colors. */
 .controls {
+  --color-surface: transparent;
+  --color-background: color-mix(in srgb, var(--color-header-text) 18%, transparent);
+  --color-text: var(--color-header-text);
+  --color-outline: var(--color-header-text);
+  --color-focus: var(--color-header-focus);
+  --color-text-disabled: color-mix(in srgb, var(--color-header-text) 50%, transparent);
+  --color-outline-disabled: color-mix(in srgb, var(--color-header-text) 40%, transparent);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-s);
+  color: var(--color-header-text);
+  border: var(--border-thin) solid var(--color-header-text);
+  border-radius: var(--radius);
+}
+
+.buttons {
   display: flex;
   align-items: center;
   gap: var(--space-s);
-  padding: var(--space-xs) var(--space-s);
-  border: var(--border-thick) solid var(--color-outline);
-}
-
-.label {
-  font-size: 0.95em;
-  padding-inline: 0.2em;
 }
 
 .fontScale {
@@ -16,4 +29,13 @@
   text-align: center;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.label {
+  white-space: pre-line;
+  font-size: 0.7em;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }

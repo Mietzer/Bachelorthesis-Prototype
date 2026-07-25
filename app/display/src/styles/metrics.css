@@ -11,7 +11,9 @@
 
   --border-thin: 2px;
   --border-thick: 3px;
-  --border-status: 6px;
+
+  --radius: 6px;
+  --radius-s: 3px;
 
   --target-min-height: 2.6em;
 }

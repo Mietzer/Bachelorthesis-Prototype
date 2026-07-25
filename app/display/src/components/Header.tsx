@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react'
-import { formatDate, type Location } from 'core'
+import { formatDate } from 'core'
 import { SeparatedList } from './ui/SeparatedList'
 import styles from './Header.module.css'
 
 export interface HeaderProps {
-  location: Location
+  title: string
   /** ISO date "YYYY-MM-DD". */
   date: string
   /** Current time as "HH:MM". */
@@ -12,19 +12,14 @@ export interface HeaderProps {
   actions?: ReactNode
 }
 
-export function Header({ location, date, time, actions }: HeaderProps) {
+export function Header({ title, date, time, actions }: HeaderProps) {
   return (
     <header className={styles.header}>
-      <p className={styles.context}>
+      <h1 className={styles.title}>
         <SeparatedList
-          items={[
-            location.code,
-            location.department,
-            formatDate(date),
-            <time key="time">{time}</time>,
-          ]}
+          items={[title, formatDate(date), <time key="time">{time}</time>]}
         />
-      </p>
+      </h1>
       {actions}
     </header>
   )

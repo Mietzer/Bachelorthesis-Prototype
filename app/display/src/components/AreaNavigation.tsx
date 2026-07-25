@@ -4,6 +4,7 @@ import styles from './AreaNavigation.module.css'
 export interface Area {
   id: string
   label: string
+  title: string
 }
 
 export interface AreaNavigationProps {

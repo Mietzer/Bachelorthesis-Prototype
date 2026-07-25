@@ -1,15 +1,17 @@
 .button {
   min-height: var(--target-min-height);
   padding: var(--space-xs) var(--space-m);
-  background: var(--color-background);
+  background: var(--color-surface);
   color: var(--color-text);
   border: var(--border-thin) solid var(--color-outline);
+  border-radius: var(--radius);
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .button:hover:not(:disabled) {
-  background: var(--color-surface);
+  background: var(--color-background);
 }
 
 .button:disabled {
@@ -18,15 +20,14 @@
   cursor: default;
 }
 
-.active,
-.button[aria-pressed='true'] {
+.active {
   background: var(--color-active-surface);
   color: var(--color-active-text);
+  box-shadow: var(--ring-active);
   font-weight: 700;
 }
 
-.active:hover:not(:disabled),
-.button[aria-pressed='true']:hover:not(:disabled) {
+.active:hover:not(:disabled) {
   background: var(--color-active-surface);
 }
 

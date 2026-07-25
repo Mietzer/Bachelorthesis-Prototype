@@ -8,12 +8,14 @@ import { TimetablePage } from './pages/TimetablePage'
 import styles from './App.module.css'
 
 const AREAS: Area[] = [
-  { id: 'timetable', label: 'Stundenplan' },
-  { id: 'rooms', label: 'Räume' },
-  { id: 'buildings', label: 'Gebäude' },
-  { id: 'events', label: 'Veranstaltungen' },
-  { id: 'notices', label: 'Aushänge' },
+  { id: 'timetable', label: 'Stundenplan', title: 'Stundenplan heute' },
+  { id: 'rooms', label: 'Räume', title: 'Räume' },
+  { id: 'buildings', label: 'Gebäude', title: 'Gebäude' },
+  { id: 'events', label: 'Veranstaltungen', title: 'Veranstaltungen' },
+  { id: 'notices', label: 'Aushänge', title: 'Aushänge' },
 ]
+
+const activeArea = AREAS[0]
 
 function App() {
   const { containerProps, ...viewSettings } = useViewSettings()
@@ -22,7 +24,7 @@ function App() {
   return (
     <div className={styles.display} {...containerProps}>
       <Header
-        location={timetable.location}
+        title={activeArea.title}
         date={timetable.date}
         time={time}
         actions={<ViewControls {...viewSettings} />}
@@ -32,7 +34,7 @@ function App() {
         <TimetablePage timetable={timetable} />
       </main>
 
-      <AreaNavigation areas={AREAS} activeArea="timetable" />
+      <AreaNavigation areas={AREAS} activeArea={activeArea.id} />
     </div>
   )
 }
