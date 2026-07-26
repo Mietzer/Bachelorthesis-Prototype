@@ -6,6 +6,9 @@
   "workspaces": [
     "app/*"
   ],
+  "overrides": {
+    "react-native": "0.81.5"
+  },
   "scripts": {
     "dev:display": "npm run dev -w display",
     "dev:app": "npm run start -w app",
