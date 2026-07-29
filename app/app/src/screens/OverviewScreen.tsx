@@ -3,6 +3,8 @@ import { FlatList, StyleSheet, View, type ListRenderItemInfo } from 'react-nativ
 
 import { useScreenFocusAnnounce } from '../a11y/useScreenFocusAnnounce';
 import { AppScreenHeader } from '../components/AppScreenHeader';
+import { AppEventEntry } from '../components/AppEventEntry';
+import { AppNoticeEntry } from '../components/AppNoticeEntry';
 import { AppSearchField } from '../components/AppSearchField';
 import { AppTimetableEntry } from '../components/AppTimetableEntry';
 import { AppTreeChildren } from '../components/AppTreeChildren';
@@ -13,6 +15,7 @@ import {
   roomSearch,
   type TreeNodeContent,
 } from '../data/strings';
+import { getEvents, getNotices } from '../lib/campus';
 import { getTimetableChanges } from '../lib/timetable';
 import { useExpandedNodes } from '../lib/useExpandedNodes';
 import { colors, spacing } from '../theme/tokens';
@@ -20,15 +23,26 @@ import { colors, spacing } from '../theme/tokens';
 const INITIALLY_EXPANDED = ['stundenplan'];
 
 const timetableChanges = getTimetableChanges();
+const events = getEvents();
+const notices = getNotices();
 
 function renderChildren(content: TreeNodeContent['content']) {
-  if (content === 'timetableChanges') {
-    return timetableChanges.map((entry) => (
-      <AppTimetableEntry key={entry.id} entry={entry} />
-    ));
+  switch (content) {
+    case 'timetableChanges':
+      return timetableChanges.map((entry) => (
+        <AppTimetableEntry key={entry.id} entry={entry} />
+      ));
+    case 'events':
+      return events.map((event) => (
+        <AppEventEntry key={event.id} event={event} />
+      ));
+    case 'notices':
+      return notices.map((notice) => (
+        <AppNoticeEntry key={notice.id} notice={notice} />
+      ));
+    default:
+      return null;
   }
-
-  return null;
 }
 
 export function OverviewScreen() {

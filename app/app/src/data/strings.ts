@@ -1,3 +1,9 @@
+import {
+  buildEventSummary,
+  buildNoticeSummary,
+  getEvents,
+  getNotices,
+} from '../lib/campus';
 import { buildChangeSummary, getTimetableChanges } from '../lib/timetable';
 
 export const overviewScreen = {
@@ -21,7 +27,7 @@ export interface TreeNodeContent {
   id: string;
   title: string;
   summary?: string;
-  content?: 'timetableChanges';
+  content?: 'timetableChanges' | 'events' | 'notices';
 }
 
 export const overviewTreeNodes: TreeNodeContent[] = [
@@ -31,9 +37,18 @@ export const overviewTreeNodes: TreeNodeContent[] = [
     summary: buildChangeSummary(getTimetableChanges().length),
     content: 'timetableChanges',
   },
+  {
+    id: 'veranstaltungen',
+    title: 'Veranstaltungen',
+    summary: buildEventSummary(getEvents().length),
+    content: 'events',
+  },
+  {
+    id: 'aushaenge',
+    title: 'Aushänge',
+    summary: buildNoticeSummary(getNotices().length),
+    content: 'notices',
+  },
   { id: 'raeume', title: 'Räume' },
   { id: 'gebaeude', title: 'Gebäude', summary: '6 Etagen' },
-  { id: 'veranstaltungen', title: 'Veranstaltungen' },
-  { id: 'aushaenge', title: 'Aushänge' },
-  { id: 'einrichtungen', title: 'Barrierefreie Einrichtungen' },
 ];

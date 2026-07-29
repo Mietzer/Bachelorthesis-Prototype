@@ -1,0 +1,20 @@
+[
+  {
+    "id": "notice-001",
+    "title": "Sprechstunden nur nach Vereinbarung",
+    "publishedOn": "2026-07-27",
+    "source": "Sekretariat Informatik"
+  },
+  {
+    "id": "notice-002",
+    "title": "Bibliothek mit geänderten Öffnungszeiten",
+    "publishedOn": "2026-07-24",
+    "source": "Bibliothek"
+  },
+  {
+    "id": "notice-003",
+    "title": "Prüfungsanmeldung bis 15.12.",
+    "publishedOn": "2026-07-20",
+    "source": "Prüfungsamt"
+  }
+]

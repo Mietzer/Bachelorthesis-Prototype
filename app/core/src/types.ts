@@ -20,3 +20,19 @@ export interface Timetable {
   date: string;
   entries: TimetableEntry[];
 }
+
+export interface CampusEvent {
+  id: string;
+  title: string;
+  date: string;
+  start: string;
+  place: string;
+  organizer: string;
+}
+
+export interface Notice {
+  id: string;
+  title: string;
+  publishedOn: string;
+  source: string;
+}
