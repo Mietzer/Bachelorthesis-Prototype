@@ -27,7 +27,8 @@ export function AppTreeNode({
   onToggle,
 }: AppTreeNodeProps) {
   const stateText = expanded ? treeNodeState.expanded : treeNodeState.collapsed;
-  const stateSeparator = summary === undefined ? ' ' : ' · ';
+  const metaText =
+    summary === undefined || expanded ? stateText : `${summary} · ${stateText}`;
 
   return (
     <Pressable
@@ -41,16 +42,8 @@ export function AppTreeNode({
     >
       <Text style={styles.marker}>{expanded ? '▼' : '►'}</Text>
       <View style={styles.body}>
-        <Text style={styles.title}>
-          {title}
-          {summary === undefined ? null : (
-            <Text style={styles.summary}> {summary}</Text>
-          )}
-          <Text style={styles.state}>
-            {stateSeparator}
-            {stateText}
-          </Text>
-        </Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.meta}>{metaText}</Text>
       </View>
     </Pressable>
   );
@@ -61,36 +54,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.surface,
     borderColor: colors.border,
-    borderRadius: radius.m,
+    borderRadius: radius.l,
     borderWidth: borderWidth.thin,
     flexDirection: 'row',
-    gap: spacing.s,
+    gap: spacing.m,
     minHeight: touchTarget,
-    paddingHorizontal: spacing.m,
+    paddingHorizontal: spacing.l,
     paddingVertical: spacing.m,
   },
   nodePressed: {
-    backgroundColor: colors.headerBackground,
+    backgroundColor: colors.surfacePressed,
     borderColor: colors.accent,
   },
   marker: {
-    color: colors.text,
+    color: colors.accent,
     fontSize: fontSize.small,
   },
   body: {
     flex: 1,
+    gap: spacing.xs,
   },
   title: {
-    color: colors.text,
+    color: colors.accent,
     fontSize: fontSize.node,
     fontWeight: '700',
   },
-  summary: {
-    color: colors.textMuted,
-    fontSize: fontSize.body,
-    fontWeight: '400',
-  },
-  state: {
+  meta: {
     color: colors.textMuted,
     fontSize: fontSize.body,
     fontWeight: '400',

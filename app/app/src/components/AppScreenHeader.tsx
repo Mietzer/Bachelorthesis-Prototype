@@ -17,7 +17,7 @@ export interface AppScreenHeaderProps {
 export function AppScreenHeader({ title, headingRef }: AppScreenHeaderProps) {
   return (
     <View style={styles.header}>
-      <AppHeading ref={headingRef} title={title} />
+      <AppHeading ref={headingRef} title={title} tone="inverse" />
     </View>
   );
 }
@@ -25,9 +25,9 @@ export function AppScreenHeader({ title, headingRef }: AppScreenHeaderProps) {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.headerBackground,
-    borderBottomColor: colors.border,
+    borderBottomColor: colors.headerBackground,
     borderBottomWidth: borderWidth.thin,
-    paddingBottom: spacing.m,
+    paddingBottom: spacing.l,
     paddingHorizontal: spacing.l,
     paddingTop: topInset + spacing.m,
   },

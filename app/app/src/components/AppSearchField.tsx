@@ -55,12 +55,12 @@ export function AppSearchField({
 
 const styles = StyleSheet.create({
   field: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background,
     borderColor: colors.borderStrong,
-    borderRadius: radius.m,
+    borderRadius: radius.l,
     borderWidth: borderWidth.thin,
     gap: spacing.xs,
-    paddingHorizontal: spacing.m,
+    paddingHorizontal: spacing.l,
     paddingVertical: spacing.m,
   },
   caption: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize.body,
   },
   label: {
-    color: colors.text,
+    color: colors.accent,
     fontSize: fontSize.node,
     fontWeight: '700',
   },

@@ -1,12 +1,15 @@
 export const colors = {
   background: '#ffffff',
   surface: '#eef1f5',
-  headerBackground: '#e3e8ee',
+  surfacePressed: '#dfe5ec',
+  headerBackground: '#1b3a5e',
+  headerText: '#ffffff',
   border: '#c9d2dc',
   borderStrong: '#8e9aa6',
   text: '#16202c',
   textMuted: '#5b6875',
   accent: '#1b3a5e',
+  statusChanged: '#b5231d',
 } as const;
 
 export const spacing = {
@@ -27,6 +30,7 @@ export const fontSize = {
 export const radius = {
   s: 4,
   m: 8,
+  l: 12,
 } as const;
 
 export const borderWidth = {
@@ -35,3 +39,5 @@ export const borderWidth = {
 } as const;
 
 export const touchTarget = 48;
+
+export const indent = spacing.m;
