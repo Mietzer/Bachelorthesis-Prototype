@@ -36,3 +36,18 @@ export interface Notice {
   publishedOn: string;
   source: string;
 }
+
+export type RoomKind = 'lab' | 'lecture' | 'seminar';
+
+export interface Room {
+  id: string;
+  code: string;
+  name: string;
+  floor: number;
+  kind: RoomKind;
+}
+
+export interface RoomGroup {
+  kind: RoomKind;
+  rooms: Room[];
+}

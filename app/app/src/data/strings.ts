@@ -1,3 +1,4 @@
+import { buildFloorSummary, getBuilding } from '../lib/building';
 import {
   buildEventSummary,
   buildNoticeSummary,
@@ -6,10 +7,15 @@ import {
 } from '../lib/campus';
 import { buildChangeSummary, getTimetableChanges } from '../lib/timetable';
 
-export const overviewScreen = {
-  title: 'HQ-Gebäude · Übersicht',
-  spokenTitle: 'HQ-Gebäude, Übersicht',
-} as const;
+export const appLocation = 'HQ-Gebäude';
+
+export function buildScreenTitle(tabTitle: string): string {
+  return `${appLocation} · ${tabTitle}`;
+}
+
+export function buildSpokenTitle(tabTitle: string): string {
+  return `${appLocation}, ${tabTitle}`;
+}
 
 export const roomSearch = {
   label: 'Raumnummer suchen',
@@ -18,37 +24,44 @@ export const roomSearch = {
   placeholder: '…',
 } as const;
 
-export const treeNodeState = {
-  collapsed: 'eingeklappt',
-  expanded: 'ausgeklappt',
-} as const;
+export const emptyCategory = 'Für diesen Bereich sind noch keine Daten hinterlegt.';
 
-export interface TreeNodeContent {
+export interface NavigationTab {
   id: string;
   title: string;
+  shortTitle: string;
   summary?: string;
-  content?: 'timetableChanges' | 'events' | 'notices';
+  /** Welcher Bereich den Inhalt des Reiters anzeigt. */
+  content: 'timetable' | 'events' | 'notices' | 'building';
 }
 
-export const overviewTreeNodes: TreeNodeContent[] = [
+export const navigationTabs: [NavigationTab, ...NavigationTab[]] = [
   {
     id: 'stundenplan',
     title: 'Stundenplan',
+    shortTitle: 'Stundenplan',
     summary: buildChangeSummary(getTimetableChanges().length),
-    content: 'timetableChanges',
+    content: 'timetable',
   },
   {
     id: 'veranstaltungen',
     title: 'Veranstaltungen',
+    shortTitle: 'Termine',
     summary: buildEventSummary(getEvents().length),
     content: 'events',
   },
   {
     id: 'aushaenge',
     title: 'Aushänge',
+    shortTitle: 'Aushänge',
     summary: buildNoticeSummary(getNotices().length),
     content: 'notices',
   },
-  { id: 'raeume', title: 'Räume' },
-  { id: 'gebaeude', title: 'Gebäude', summary: '6 Etagen' },
+  {
+    id: 'gebaeude',
+    title: 'Gebäude',
+    shortTitle: 'Gebäude',
+    summary: buildFloorSummary(getBuilding().length),
+    content: 'building',
+  },
 ];

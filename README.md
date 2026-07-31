@@ -27,10 +27,11 @@ npm run dev:app        # Expo dev server (app/app)
 app/
   core/       # shared logic + sample data, framework-free
     src/
-      data/         # timetable.json, events.json, notices.json
-      types.ts      # Timetable, TimetableEntry, CampusEvent, Notice
+      data/         # timetable.json, events.json, notices.json, rooms.json
+      types.ts      # Timetable, TimetableEntry, CampusEvent, Notice, Room
       timetable.ts  # filtering + German date/time formatting
       campus.ts     # sort order for events and notices
+      rooms.ts      # floors, room kinds, grouping per floor
       index.ts      # public surface: typed data + helpers
   display/    # React + Vite
     src/
@@ -40,10 +41,10 @@ app/
       styles/       # colors.css + metrics.css (design tokens)
   app/        # React Native + Expo
     src/
-      screens/      # one screen per view (OverviewScreen)
-      components/   # App* building blocks (tree nodes, cards, header, search)
+      screens/      # MainScreen = frame; one screen per area beside it
+      components/   # App* building blocks (tab bar, cards, sections, search)
       lib/          # core data mapped to display text + screen reader labels
-      data/         # German UI text + the overview tree definition
+      data/         # German UI text + the navigation tab definition
       a11y/         # screen reader helpers (focus on screen entry)
       theme/        # tokens.ts: colors, spacing, font sizes, touch target
 ```

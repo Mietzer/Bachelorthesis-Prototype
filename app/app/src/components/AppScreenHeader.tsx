@@ -1,23 +1,29 @@
 import type { ComponentRef, Ref } from 'react';
-import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { borderWidth, colors, spacing } from '../theme/tokens';
+import { borderWidth, colors, fontSize, spacing } from '../theme/tokens';
 import { AppHeading } from './AppHeading';
-
-const topInset = Platform.select({
-  android: StatusBar.currentHeight ?? spacing.xl,
-  default: 44,
-});
 
 export interface AppScreenHeaderProps {
   title: string;
+  subtitle?: string;
   headingRef?: Ref<ComponentRef<typeof Text>>;
 }
 
-export function AppScreenHeader({ title, headingRef }: AppScreenHeaderProps) {
+export function AppScreenHeader({
+  title,
+  subtitle,
+  headingRef,
+}: AppScreenHeaderProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, { paddingTop: insets.top + spacing.m }]}>
       <AppHeading ref={headingRef} title={title} tone="inverse" />
+      {subtitle === undefined ? null : (
+        <Text style={styles.subtitle}>{subtitle}</Text>
+      )}
     </View>
   );
 }
@@ -29,6 +35,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: borderWidth.thin,
     paddingBottom: spacing.l,
     paddingHorizontal: spacing.l,
-    paddingTop: topInset + spacing.m,
+  },
+  subtitle: {
+    color: colors.headerTextMuted,
+    fontSize: fontSize.body,
+    marginTop: spacing.xs,
   },
 });

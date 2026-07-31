@@ -4,6 +4,7 @@ export const colors = {
   surfacePressed: '#dfe5ec',
   headerBackground: '#1b3a5e',
   headerText: '#ffffff',
+  headerTextMuted: '#c9d6e4',
   border: '#c9d2dc',
   borderStrong: '#8e9aa6',
   text: '#16202c',
@@ -39,5 +40,3 @@ export const borderWidth = {
 } as const;
 
 export const touchTarget = 48;
-
-export const indent = spacing.m;

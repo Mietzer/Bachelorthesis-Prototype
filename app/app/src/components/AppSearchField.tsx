@@ -33,7 +33,6 @@ export function AppSearchField({
         importantForAccessibility="no-hide-descendants"
         style={styles.caption}
       >
-        <Text style={styles.icon}>🔍</Text>
         <Text style={styles.label}>{label}</Text>
         {badge === undefined ? null : <Text style={styles.badge}>({badge})</Text>}
       </View>
@@ -68,9 +67,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.s,
-  },
-  icon: {
-    fontSize: fontSize.body,
   },
   label: {
     color: colors.accent,

@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { OverviewScreen } from './src/screens/OverviewScreen';
-import { colors } from './src/theme/tokens';
+import { MainScreen } from './src/screens/MainScreen';
 
 export default function App() {
   return (
-    <>
-      <StatusBar style="light" backgroundColor={colors.headerBackground} />
-      <OverviewScreen />
-    </>
+    <SafeAreaProvider>
+      <StatusBar style="light" />
+      <MainScreen />
+    </SafeAreaProvider>
   );
 }
