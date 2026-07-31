@@ -1,43 +1,99 @@
-import { useCallback } from 'react';
-import type { ListRenderItemInfo } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, type ListRenderItemInfo } from 'react-native';
 
+import { AppContentCard } from '../components/AppContentCard';
 import { AppContentList } from '../components/AppContentList';
 import { AppFloorSection } from '../components/AppFloorSection';
 import { AppSearchField } from '../components/AppSearchField';
 import { roomSearch } from '../data/strings';
-import { getBuilding, type FloorContent } from '../lib/building';
+import {
+  buildResultSummary,
+  getBuilding,
+  searchRooms,
+  type FloorContent,
+  type RoomResult,
+} from '../lib/building';
 import { useExpandedNodes } from '../lib/useExpandedNodes';
+import { colors, fontSize, spacing } from '../theme/tokens';
 
-const floors = getBuilding();
+type BuildingItem =
+  | { kind: 'floor'; id: string; floor: FloorContent }
+  | { kind: 'room'; id: string; room: RoomResult };
+
+const floorItems: BuildingItem[] = getBuilding().map((floor) => ({
+  kind: 'floor',
+  id: floor.id,
+  floor,
+}));
 
 export function BuildingScreen() {
+  const [query, setQuery] = useState('');
   const { expandedIds, isExpanded, toggle } = useExpandedNodes();
 
-  const renderFloor = useCallback(
-    ({ item }: ListRenderItemInfo<FloorContent>) => (
-      <AppFloorSection
-        expanded={isExpanded(item.id)}
-        floor={item}
-        onToggle={() => toggle(item.id)}
-      />
-    ),
+  const results = useMemo(() => searchRooms(query), [query]);
+  const searching = query.trim() !== '';
+
+  const items: BuildingItem[] = searching
+    ? results.map((room) => ({ kind: 'room', id: room.id, room }))
+    : floorItems;
+
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<BuildingItem>) => {
+      if (item.kind === 'room') {
+        return (
+          <AppContentCard
+            accessibilityLabel={item.room.label}
+            detail={item.room.detail}
+            title={item.room.code}
+          />
+        );
+      }
+
+      return (
+        <AppFloorSection
+          expanded={isExpanded(item.id)}
+          floor={item.floor}
+          onToggle={() => toggle(item.id)}
+        />
+      );
+    },
     [isExpanded, toggle],
   );
 
   return (
     <AppContentList
+      emptyText={searching ? null : undefined}
       extraData={expandedIds}
       header={
-        <AppSearchField
-          badge={roomSearch.badge}
-          hint={roomSearch.hint}
-          label={roomSearch.label}
-          placeholder={roomSearch.placeholder}
-        />
+        <View style={styles.header}>
+          <AppSearchField
+            badge={roomSearch.badge}
+            hint={roomSearch.hint}
+            label={roomSearch.label}
+            onChangeText={setQuery}
+            placeholder={roomSearch.placeholder}
+            value={query}
+          />
+          {searching ? (
+            <Text accessibilityLiveRegion="polite" style={styles.summary}>
+              {buildResultSummary(results.length)}
+            </Text>
+          ) : null}
+        </View>
       }
-      items={floors}
-      keyExtractor={(floor) => floor.id}
-      renderItem={renderFloor}
+      items={items}
+      keyExtractor={(item) => item.id}
+      renderItem={renderItem}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    gap: spacing.m,
+  },
+  summary: {
+    color: colors.textMuted,
+    fontSize: fontSize.body,
+  },
+});

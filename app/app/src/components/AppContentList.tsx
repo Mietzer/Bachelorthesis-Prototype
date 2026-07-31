@@ -10,6 +10,7 @@ export interface AppContentListProps<T> {
   renderItem: ListRenderItem<T>;
   header?: ReactElement;
   extraData?: unknown;
+  emptyText?: string | null;
 }
 
 export function AppContentList<T>({
@@ -18,6 +19,7 @@ export function AppContentList<T>({
   renderItem,
   header,
   extraData,
+  emptyText = emptyCategory,
 }: AppContentListProps<T>) {
   return (
     <FlatList
@@ -25,7 +27,9 @@ export function AppContentList<T>({
       data={items}
       extraData={extraData}
       keyExtractor={keyExtractor}
-      ListEmptyComponent={<Text style={styles.empty}>{emptyCategory}</Text>}
+      ListEmptyComponent={
+        emptyText === null ? null : <Text style={styles.empty}>{emptyText}</Text>
+      }
       ListHeaderComponent={header}
       renderItem={renderItem}
       style={styles.list}

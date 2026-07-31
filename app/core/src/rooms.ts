@@ -27,6 +27,22 @@ export function getRoomsOnFloor(rooms: Room[], floor: number): Room[] {
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 
+function normalizeCode(value: string): string {
+  return value.replace(/[\s.]/g, '').toLowerCase();
+}
+
+export function findRoomsByCode(rooms: Room[], query: string): Room[] {
+  const needle = normalizeCode(query);
+
+  if (needle === '') {
+    return [];
+  }
+
+  return rooms
+    .filter((room) => normalizeCode(room.code).includes(needle))
+    .sort((a, b) => a.code.localeCompare(b.code));
+}
+
 export function groupRoomsByKind(rooms: Room[]): RoomGroup[] {
   return ROOM_KIND_ORDER.map((kind) => ({
     kind,

@@ -1,4 +1,5 @@
 import {
+  findRoomsByCode,
   formatFloor,
   getFloors,
   getRoomKindLabel,
@@ -57,4 +58,33 @@ export function buildSpokenRoomCode(code: string): string {
 
 export function buildRoomLabel(room: Room, kindLabel: string): string {
   return `Raum ${buildSpokenRoomCode(room.code)}, ${room.name}, ${kindLabel}`;
+}
+
+export interface RoomResult {
+  id: string;
+  code: string;
+  detail: string;
+  label: string;
+}
+
+export function searchRooms(query: string): RoomResult[] {
+  return findRoomsByCode(rooms, query).map((room) => {
+    const kindLabel = getRoomKindLabel(room.kind);
+    const floor = formatFloor(room.floor);
+
+    return {
+      id: room.id,
+      code: room.code,
+      detail: `${room.name} · ${kindLabel} · ${floor}`,
+      label: `${buildRoomLabel(room, kindLabel)}, ${floor}`,
+    };
+  });
+}
+
+export function buildResultSummary(count: number): string {
+  if (count === 0) {
+    return 'Keine Treffer';
+  }
+
+  return count === 1 ? '1 Treffer' : `${count} Treffer`;
 }

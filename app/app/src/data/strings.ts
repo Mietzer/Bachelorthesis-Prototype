@@ -31,7 +31,6 @@ export interface NavigationTab {
   title: string;
   shortTitle: string;
   summary?: string;
-  /** Welcher Bereich den Inhalt des Reiters anzeigt. */
   content: 'timetable' | 'events' | 'notices' | 'building';
 }
 

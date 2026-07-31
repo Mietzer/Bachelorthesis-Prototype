@@ -28,6 +28,7 @@ export {
 export { getRecentNotices, getUpcomingEvents } from './campus';
 
 export {
+  findRoomsByCode,
   formatFloor,
   getFloors,
   getRoomKindLabel,
