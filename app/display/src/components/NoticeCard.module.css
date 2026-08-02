@@ -1,0 +1,17 @@
+.since {
+  flex: none;
+  color: var(--color-text-muted);
+}
+
+.date {
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.source {
+  margin-left: auto;
+  color: var(--color-text-muted);
+}

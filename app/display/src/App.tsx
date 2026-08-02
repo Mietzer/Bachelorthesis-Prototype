@@ -1,25 +1,41 @@
-import { timetable } from 'core'
+import { useState } from 'react'
+import { events, notices, timetable } from 'core'
 import { AreaNavigation, type Area } from './components/AreaNavigation'
 import { Header } from './components/Header'
 import { ViewControls } from './components/ViewControls'
 import { useCurrentTime } from './hooks/useCurrentTime'
 import { useViewSettings } from './hooks/useViewSettings'
+import { EventsPage } from './pages/EventsPage'
+import { NoticesPage } from './pages/NoticesPage'
 import { TimetablePage } from './pages/TimetablePage'
 import styles from './App.module.css'
 
 const AREAS: Area[] = [
   { id: 'timetable', label: 'Stundenplan', title: 'Stundenplan heute' },
-  { id: 'rooms', label: 'Räume', title: 'Räume' },
-  { id: 'buildings', label: 'Gebäude', title: 'Gebäude' },
   { id: 'events', label: 'Veranstaltungen', title: 'Veranstaltungen' },
   { id: 'notices', label: 'Aushänge', title: 'Aushänge' },
+  { id: 'building', label: 'Gebäude', title: 'Gebäude' },
 ]
 
-const activeArea = AREAS[0]
+function renderPage(area: Area) {
+  switch (area.id) {
+    case 'timetable':
+      return <TimetablePage timetable={timetable} />
+    case 'events':
+      return <EventsPage events={events} />
+    case 'notices':
+      return <NoticesPage notices={notices} />
+    default:
+      return null
+  }
+}
 
 function App() {
   const { containerProps, ...viewSettings } = useViewSettings()
   const time = useCurrentTime()
+  const [activeId, setActiveId] = useState(AREAS[0].id)
+
+  const activeArea = AREAS.find((area) => area.id === activeId) ?? AREAS[0]
 
   return (
     <div className={styles.display} {...containerProps}>
@@ -30,11 +46,13 @@ function App() {
         actions={<ViewControls {...viewSettings} />}
       />
 
-      <main className={styles.content}>
-        <TimetablePage timetable={timetable} />
-      </main>
+      <main className={styles.content}>{renderPage(activeArea)}</main>
 
-      <AreaNavigation areas={AREAS} activeArea={activeArea.id} />
+      <AreaNavigation
+        areas={AREAS}
+        activeArea={activeArea.id}
+        onSelect={setActiveId}
+      />
     </div>
   )
 }

@@ -1,0 +1,13 @@
+.date,
+.time {
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-weight: 600;
+}
+
+.meta {
+  margin-left: auto;
+  color: var(--color-text-muted);
+}

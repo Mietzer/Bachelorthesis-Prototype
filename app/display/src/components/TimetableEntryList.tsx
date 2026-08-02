@@ -1,6 +1,6 @@
 import type { TimetableEntry } from 'core'
 import { TimetableEntryCard } from './TimetableEntryCard'
-import styles from './TimetableEntryList.module.css'
+import { CardList } from './ui/CardList'
 
 export interface TimetableEntryListProps {
   entries: TimetableEntry[]
@@ -8,12 +8,12 @@ export interface TimetableEntryListProps {
 
 export function TimetableEntryList({ entries }: TimetableEntryListProps) {
   return (
-    <ul className={styles.list}>
+    <CardList>
       {entries.map((entry) => (
         <li key={entry.id}>
           <TimetableEntryCard entry={entry} />
         </li>
       ))}
-    </ul>
+    </CardList>
   )
 }
