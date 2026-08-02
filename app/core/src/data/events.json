@@ -4,23 +4,32 @@
     "title": "Fachschafts-Grillen zum Semesterstart",
     "date": "2026-10-01",
     "start": "17:00",
-    "place": "Innenhof HQ",
+    "place": "Innenhof Fakultät IN",
     "organizer": "Fachschaft Informatik"
   },
   {
     "id": "event-002",
-    "title": "Gastvortrag: Sichere Software-Lieferketten",
+    "title": "Kneipentour",
     "date": "2026-10-15",
-    "start": "18:00",
-    "place": "HQ.105",
-    "organizer": "Fakultät Informatik"
+    "start": "19:00",
+    "place": "Innenhof Fakultät IN",
+    "organizer": "Fachschaft IN"
   },
   {
     "id": "event-003",
-    "title": "Theatervorstellung der TH Nürnberg",
+    "title": "ComeIN",
     "date": "2026-11-12",
     "start": "19:30",
-    "place": "Aula",
+    "place": "Fakultät Informatik",
     "organizer": "Hochschulgruppe Theater"
+  },
+  {
+    "id": "event-004",
+    "title": "Weihnachtsfeier",
+    "date": "2026-12-10",
+    "start": "18:00",
+    "place": "Cafeteria ",
+    "organizer": "Fachschaft Informatik"
   }
+
 ]

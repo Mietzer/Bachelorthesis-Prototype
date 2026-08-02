@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { events, notices, timetable } from 'core'
+import { events, notices, rooms, timetable } from 'core'
 import { AreaNavigation, type Area } from './components/AreaNavigation'
 import { Header } from './components/Header'
 import { ViewControls } from './components/ViewControls'
 import { useCurrentTime } from './hooks/useCurrentTime'
 import { useViewSettings } from './hooks/useViewSettings'
+import { BuildingPage } from './pages/BuildingPage'
 import { EventsPage } from './pages/EventsPage'
 import { NoticesPage } from './pages/NoticesPage'
 import { TimetablePage } from './pages/TimetablePage'
@@ -25,6 +26,8 @@ function renderPage(area: Area) {
       return <EventsPage events={events} />
     case 'notices':
       return <NoticesPage notices={notices} />
+    case 'building':
+      return <BuildingPage rooms={rooms} />
     default:
       return null
   }

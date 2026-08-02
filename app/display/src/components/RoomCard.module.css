@@ -1,0 +1,13 @@
+.code {
+  flex: none;
+  font-family: var(--font-mono);
+}
+
+.name {
+  font-weight: 600;
+}
+
+.kind {
+  margin-left: auto;
+  color: var(--color-text-muted);
+}

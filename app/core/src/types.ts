@@ -37,7 +37,7 @@ export interface Notice {
   source: string;
 }
 
-export type RoomKind = 'lab' | 'lecture' | 'seminar';
+export type RoomKind = 'lab' | 'lecture' | 'seminar' | 'room';
 
 export interface Room {
   id: string;

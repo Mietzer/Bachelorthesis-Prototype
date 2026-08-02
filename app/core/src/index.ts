@@ -30,6 +30,7 @@ export { getRecentNotices, getUpcomingEvents } from './campus';
 export {
   findRoomsByCode,
   formatFloor,
+  getFloorCode,
   getFloors,
   getRoomKindLabel,
   getRoomsOnFloor,

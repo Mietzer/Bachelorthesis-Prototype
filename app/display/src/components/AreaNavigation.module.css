@@ -1,4 +1,5 @@
 .navigation {
+  flex: none;
   padding: var(--space-m) var(--space-l);
   background: var(--color-surface);
   border-top: var(--border-thin) solid var(--color-border);

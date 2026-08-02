@@ -1,24 +1,27 @@
 [
-  { "id": "room-007", "code": "HQ.007", "name": "Hörsaal A", "floor": 0, "kind": "lecture" },
-  { "id": "room-005", "code": "HQ.005", "name": "Seminarraum Nord", "floor": 0, "kind": "seminar" },
-  { "id": "room-012", "code": "HQ.012", "name": "Werkstattlabor", "floor": 0, "kind": "lab" },
 
-  { "id": "room-105", "code": "HQ.105", "name": "Hörsaal B", "floor": 1, "kind": "lecture" },
-  { "id": "room-108", "code": "HQ.108", "name": "Seminarraum Süd", "floor": 1, "kind": "seminar" },
-  { "id": "room-114", "code": "HQ.114", "name": "Medienlabor", "floor": 1, "kind": "lab" },
+  { "id": "room-U07", "code": "HQ.U07", "name": "Cafeteria", "floor": -1, "kind": "room" },
+  { "id": "room-U04", "code": "HQ.U09", "name": "Working Space", "floor": -1, "kind": "room" },
 
-  { "id": "room-201", "code": "HQ.201", "name": "Hörsaal C", "floor": 2, "kind": "lecture" },
-  { "id": "room-206", "code": "HQ.206", "name": "Programmierlabor", "floor": 2, "kind": "lab" },
-  { "id": "room-210", "code": "HQ.210", "name": "Seminarraum Ost", "floor": 2, "kind": "seminar" },
+  { "id": "room-007", "code": "HQ.007", "name": "Hörsaal", "floor": 0, "kind": "lecture" },
+  { "id": "room-005", "code": "HQ.013", "name": "Hörsaal", "floor": 0, "kind": "lecture" },
+  { "id": "room-012", "code": "HQ.012", "name": "Fachschaftszimmer", "floor": 0, "kind": "room" },
 
-  { "id": "room-302", "code": "HQ.302", "name": "Datenbanklabor", "floor": 3, "kind": "lab" },
-  { "id": "room-310", "code": "HQ.310", "name": "Seminarraum West", "floor": 3, "kind": "seminar" },
+  { "id": "room-105", "code": "HQ.105", "name": "Hörsaal", "floor": 1, "kind": "lecture" },
+  { "id": "room-108", "code": "HQ.104", "name": "Seminarraum", "floor": 1, "kind": "seminar" },
+  { "id": "room-114", "code": "HQ.111", "name": "Hörsaal", "floor": 1, "kind": "lecture" },
 
-  { "id": "room-405", "code": "HQ.405", "name": "Hörsaal D", "floor": 4, "kind": "lecture" },
-  { "id": "room-408", "code": "HQ.408", "name": "Projektraum 1", "floor": 4, "kind": "seminar" },
-  { "id": "room-412", "code": "HQ.412", "name": "Netzwerklabor", "floor": 4, "kind": "lab" },
+  { "id": "room-201", "code": "HQ.205", "name": "Labor", "floor": 2, "kind": "lab" },
+  { "id": "room-206", "code": "HQ.204", "name": "Seminarraum", "floor": 2, "kind": "seminar" },
+  { "id": "room-210", "code": "HQ.211", "name": "Labor", "floor": 2, "kind": "lab" },
 
-  { "id": "room-501", "code": "HQ.501", "name": "Robotiklabor", "floor": 5, "kind": "lab" },
-  { "id": "room-503", "code": "HQ.503", "name": "IT-Sicherheitslabor", "floor": 5, "kind": "lab" },
-  { "id": "room-510", "code": "HQ.510", "name": "Projektraum 2", "floor": 5, "kind": "seminar" }
+  { "id": "room-306", "code": "HQ.306", "name": "Labor", "floor": 3, "kind": "lab" },
+  { "id": "room-310", "code": "HQ.300a", "name": "Postfächer", "floor": 3, "kind": "room" },
+
+  { "id": "room-405", "code": "HQ.405", "name": "Seminarraum", "floor": 4, "kind": "seminar" },
+  { "id": "room-408", "code": "HQ.411", "name": "Labor", "floor": 4, "kind": "lab" },
+  { "id": "room-412", "code": "HQ.412", "name": "Labor", "floor": 4, "kind": "lab" },
+
+  { "id": "room-501", "code": "HQ.506", "name": "Labor", "floor": 5, "kind": "lab" },
+  { "id": "room-503", "code": "HQ.516", "name": "Labor", "floor": 5, "kind": "lab" }
 ]
