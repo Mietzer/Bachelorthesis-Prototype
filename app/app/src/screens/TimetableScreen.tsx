@@ -6,8 +6,13 @@ import { getTimetableChanges, type TimetableEntry } from '../lib/timetable';
 
 const changes = getTimetableChanges();
 
-function renderEntry({ item }: ListRenderItemInfo<TimetableEntry>) {
-  return <AppTimetableEntry entry={item} />;
+function renderEntry({ item, index }: ListRenderItemInfo<TimetableEntry>) {
+  return (
+    <AppTimetableEntry
+      entry={item}
+      position={{ index, total: changes.length }}
+    />
+  );
 }
 
 export function TimetableScreen() {

@@ -48,15 +48,21 @@ function normalizeCode(value: string): string {
   return value.replace(/[\s.]/g, '').toLowerCase();
 }
 
-export function findRoomsByCode(rooms: Room[], query: string): Room[] {
-  const needle = normalizeCode(query);
+export function findRooms(rooms: Room[], query: string): Room[] {
+  const text = query.trim().toLowerCase();
 
-  if (needle === '') {
+  if (text === '') {
     return [];
   }
 
+  const code = normalizeCode(text);
+
   return rooms
-    .filter((room) => normalizeCode(room.code).includes(needle))
+    .filter(
+      (room) =>
+        (code !== '' && normalizeCode(room.code).includes(code)) ||
+        room.name.toLowerCase().includes(text),
+    )
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 

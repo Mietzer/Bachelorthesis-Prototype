@@ -1,5 +1,12 @@
-import { useCallback, useMemo, useState } from 'react';
-import { StyleSheet, Text, View, type ListRenderItemInfo } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  AccessibilityInfo,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  type ListRenderItemInfo,
+} from 'react-native';
 
 import { AppContentCard } from '../components/AppContentCard';
 import { AppContentList } from '../components/AppContentList';
@@ -20,6 +27,8 @@ type BuildingItem =
   | { kind: 'floor'; id: string; floor: FloorContent }
   | { kind: 'room'; id: string; room: RoomResult };
 
+const ANNOUNCE_DELAY_MS = 400;
+
 const floorItems: BuildingItem[] = getBuilding().map((floor) => ({
   kind: 'floor',
   id: floor.id,
@@ -37,13 +46,41 @@ export function BuildingScreen() {
     ? results.map((room) => ({ kind: 'room', id: room.id, room }))
     : floorItems;
 
+  const total = items.length;
+
+  const status = searching
+    ? buildResultSummary(results.length)
+    : roomSearch.cleared;
+
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    if (Platform.OS === 'android' && searching) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      AccessibilityInfo.announceForAccessibility(status);
+    }, ANNOUNCE_DELAY_MS);
+
+    return () => clearTimeout(timer);
+  }, [searching, status]);
+
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<BuildingItem>) => {
+    ({ item, index }: ListRenderItemInfo<BuildingItem>) => {
+      const position = { index, total };
+
       if (item.kind === 'room') {
         return (
           <AppContentCard
             accessibilityLabel={item.room.label}
             detail={item.room.detail}
+            position={position}
             title={item.room.code}
           />
         );
@@ -54,10 +91,11 @@ export function BuildingScreen() {
           expanded={isExpanded(item.id)}
           floor={item.floor}
           onToggle={() => toggle(item.id)}
+          position={position}
         />
       );
     },
-    [isExpanded, toggle],
+    [isExpanded, toggle, total],
   );
 
   return (
@@ -72,11 +110,10 @@ export function BuildingScreen() {
             label={roomSearch.label}
             onChangeText={setQuery}
             placeholder={roomSearch.placeholder}
-            value={query}
           />
           {searching ? (
             <Text accessibilityLiveRegion="polite" style={styles.summary}>
-              {buildResultSummary(results.length)}
+              {status}
             </Text>
           ) : null}
         </View>

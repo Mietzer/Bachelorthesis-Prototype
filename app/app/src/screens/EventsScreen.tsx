@@ -6,8 +6,10 @@ import { getEvents, type CampusEvent } from '../lib/campus';
 
 const events = getEvents();
 
-function renderEvent({ item }: ListRenderItemInfo<CampusEvent>) {
-  return <AppEventEntry event={item} />;
+function renderEvent({ item, index }: ListRenderItemInfo<CampusEvent>) {
+  return (
+    <AppEventEntry event={item} position={{ index, total: events.length }} />
+  );
 }
 
 export function EventsScreen() {

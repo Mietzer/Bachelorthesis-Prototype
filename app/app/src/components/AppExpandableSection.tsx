@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { appendPosition, type ListPosition } from '../lib/listPosition';
 import {
   borderWidth,
   colors,
@@ -18,6 +19,7 @@ export interface AppExpandableSectionProps {
   summary?: string;
   expanded: boolean;
   onToggle: () => void;
+  position?: ListPosition;
   children: ReactNode;
 }
 
@@ -26,6 +28,7 @@ export function AppExpandableSection({
   summary,
   expanded,
   onToggle,
+  position,
   children,
 }: AppExpandableSectionProps) {
   const stateText = expanded ? EXPANDED : COLLAPSED;
@@ -33,9 +36,10 @@ export function AppExpandableSection({
   return (
     <View>
       <Pressable
-        accessibilityLabel={
-          summary === undefined ? title : `${title}, ${summary}`
-        }
+        accessibilityLabel={appendPosition(
+          summary === undefined ? title : `${title}, ${summary}`,
+          position,
+        )}
         accessibilityRole="button"
         accessibilityState={{ expanded }}
         onPress={onToggle}

@@ -1,6 +1,6 @@
 [
 
-  { "id": "room-U07", "code": "HQ.U07", "name": "Cafeteria", "floor": -1, "kind": "room" },
+  { "id": "room-U07", "code": "HQ.U07", "name": "Mensa", "floor": -1, "kind": "room" },
   { "id": "room-U04", "code": "HQ.U09", "name": "Working Space", "floor": -1, "kind": "room" },
 
   { "id": "room-007", "code": "HQ.007", "name": "Hörsaal", "floor": 0, "kind": "lecture" },

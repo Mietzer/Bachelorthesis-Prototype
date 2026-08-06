@@ -18,6 +18,7 @@ export type {
 
 export {
   formatDate,
+  formatSpokenDate,
   formatTime,
   formatTimeRange,
   getChanges,
@@ -28,7 +29,7 @@ export {
 export { getRecentNotices, getUpcomingEvents } from './campus';
 
 export {
-  findRoomsByCode,
+  findRooms,
   formatFloor,
   getFloorCode,
   getFloors,

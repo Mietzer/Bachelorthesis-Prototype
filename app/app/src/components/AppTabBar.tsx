@@ -42,7 +42,7 @@ export function AppTabBar({ tabs, activeId, onSelect }: AppTabBarProps) {
           >
             <View style={selected ? styles.activeBar : styles.activeBarHidden} />
             <Text style={selected ? styles.labelActive : styles.label}>
-              {tab.shortTitle}
+              {tab.barTitle ?? tab.title}
             </Text>
           </Pressable>
         );

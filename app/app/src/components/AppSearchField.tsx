@@ -14,7 +14,7 @@ export interface AppSearchFieldProps {
   placeholder: string;
   badge?: string;
   hint?: string;
-  value?: string;
+  defaultValue?: string;
   onChangeText?: (text: string) => void;
 }
 
@@ -23,7 +23,7 @@ export function AppSearchField({
   placeholder,
   badge,
   hint,
-  value,
+  defaultValue,
   onChangeText,
 }: AppSearchFieldProps) {
   return (
@@ -39,14 +39,14 @@ export function AppSearchField({
       <TextInput
         accessibilityLabel={label}
         accessibilityHint={hint}
-        autoCapitalize="characters"
+        autoCapitalize="none"
         autoCorrect={false}
+        defaultValue={defaultValue}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={colors.textMuted}
         returnKeyType="search"
         style={styles.input}
-        value={value}
       />
     </View>
   );

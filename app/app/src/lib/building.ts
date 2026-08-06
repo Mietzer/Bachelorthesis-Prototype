@@ -1,5 +1,5 @@
 import {
-  findRoomsByCode,
+  findRooms,
   formatFloor,
   getFloors,
   getRoomKindLabel,
@@ -21,6 +21,7 @@ export interface FloorContent {
   id: string;
   title: string;
   summary: string;
+  roomCount: number;
   groups: RoomGroupContent[];
 }
 
@@ -40,6 +41,7 @@ export function getBuilding(): FloorContent[] {
       id: `floor-${floor}`,
       title: formatFloor(floor),
       summary: buildRoomSummary(roomsOnFloor.length),
+      roomCount: roomsOnFloor.length,
       groups: groupRoomsByKind(roomsOnFloor).map((group) => ({
         kind: group.kind,
         label: getRoomKindLabel(group.kind),
@@ -68,7 +70,7 @@ export interface RoomResult {
 }
 
 export function searchRooms(query: string): RoomResult[] {
-  return findRoomsByCode(rooms, query).map((room) => {
+  return findRooms(rooms, query).map((room) => {
     const kindLabel = getRoomKindLabel(room.kind);
     const floor = formatFloor(room.floor);
 

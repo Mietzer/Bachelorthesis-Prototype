@@ -6,8 +6,10 @@ import { getNotices, type Notice } from '../lib/campus';
 
 const notices = getNotices();
 
-function renderNotice({ item }: ListRenderItemInfo<Notice>) {
-  return <AppNoticeEntry notice={item} />;
+function renderNotice({ item, index }: ListRenderItemInfo<Notice>) {
+  return (
+    <AppNoticeEntry notice={item} position={{ index, total: notices.length }} />
+  );
 }
 
 export function NoticesScreen() {

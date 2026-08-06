@@ -8,7 +8,6 @@ export function getScheduled(timetable: Timetable): TimetableEntry[] {
   return timetable.entries.filter((entry) => entry.status === 'scheduled');
 }
 
-// Labels are part of the German display content, not identifiers.
 const STATUS_LABELS: Record<EntryStatus, string> = {
   scheduled: 'Planmäßig',
   cancelled: 'Entfällt',
@@ -19,7 +18,6 @@ export function getStatusLabel(status: EntryStatus): string {
   return STATUS_LABELS[status];
 }
 
-// "Mi, 15.07." - German short weekday without its trailing abbreviation dot.
 export function formatDate(isoDate: string): string {
   const date = new Date(`${isoDate}T00:00:00`);
   const weekday = date
@@ -30,6 +28,14 @@ export function formatDate(isoDate: string): string {
     month: '2-digit',
   });
   return `${weekday}, ${dayMonth}`;
+}
+
+export function formatSpokenDate(isoDate: string): string {
+  return new Date(`${isoDate}T00:00:00`).toLocaleDateString('de-DE', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });
 }
 
 export function formatTime(date: Date): string {

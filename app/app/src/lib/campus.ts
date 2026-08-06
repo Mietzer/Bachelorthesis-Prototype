@@ -1,6 +1,7 @@
 import {
   events,
   formatDate,
+  formatSpokenDate,
   getRecentNotices,
   getUpcomingEvents,
   notices,
@@ -33,7 +34,7 @@ export function buildEventDetail(event: CampusEvent): string {
 export function buildEventLabel(event: CampusEvent): string {
   return [
     event.title,
-    formatDate(event.date),
+    formatSpokenDate(event.date),
     `${event.start} Uhr`,
     event.place,
     event.organizer,
@@ -47,7 +48,7 @@ export function buildNoticeDetail(notice: Notice): string {
 export function buildNoticeLabel(notice: Notice): string {
   return [
     notice.title,
-    `ausgehängt seit ${formatDate(notice.publishedOn)}`,
+    `ausgehängt seit ${formatSpokenDate(notice.publishedOn)}`,
     notice.source,
   ].join(', ');
 }

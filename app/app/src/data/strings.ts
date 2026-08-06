@@ -18,10 +18,11 @@ export function buildSpokenTitle(tabTitle: string): string {
 }
 
 export const roomSearch = {
-  label: 'Raumnummer suchen',
+  label: 'Raum suchen',
   badge: 'Schnellweg',
-  hint: 'Schnellweg zu einem Raum, zum Beispiel H Q 4 0 5',
+  hint: 'Sucht einen Raum im Gebäude, nach Nummer oder Name',
   placeholder: '…',
+  cleared: 'Suche geleert, alle Etagen',
 } as const;
 
 export const emptyCategory = 'Für diesen Bereich sind noch keine Daten hinterlegt.';
@@ -29,7 +30,7 @@ export const emptyCategory = 'Für diesen Bereich sind noch keine Daten hinterle
 export interface NavigationTab {
   id: string;
   title: string;
-  shortTitle: string;
+  barTitle?: string;
   summary?: string;
   content: 'timetable' | 'events' | 'notices' | 'building';
 }
@@ -38,28 +39,25 @@ export const navigationTabs: [NavigationTab, ...NavigationTab[]] = [
   {
     id: 'stundenplan',
     title: 'Stundenplan',
-    shortTitle: 'Stundenplan',
     summary: buildChangeSummary(getTimetableChanges().length),
     content: 'timetable',
   },
   {
     id: 'veranstaltungen',
     title: 'Veranstaltungen',
-    shortTitle: 'Termine',
+    barTitle: 'Veranstal\u200Btungen',
     summary: buildEventSummary(getEvents().length),
     content: 'events',
   },
   {
     id: 'aushaenge',
     title: 'Aushänge',
-    shortTitle: 'Aushänge',
     summary: buildNoticeSummary(getNotices().length),
     content: 'notices',
   },
   {
     id: 'gebaeude',
     title: 'Gebäude',
-    shortTitle: 'Gebäude',
     summary: buildFloorSummary(getBuilding().length),
     content: 'building',
   },

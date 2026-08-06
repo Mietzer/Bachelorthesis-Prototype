@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { appendPosition, type ListPosition } from '../lib/listPosition';
 import { borderWidth, colors, fontSize, radius, spacing } from '../theme/tokens';
 import { AppStatusBadge } from './AppStatusBadge';
 
@@ -8,6 +9,7 @@ export interface AppContentCardProps {
   detail: string;
   badge?: string;
   accessibilityLabel: string;
+  position?: ListPosition;
 }
 
 export function AppContentCard({
@@ -15,9 +17,14 @@ export function AppContentCard({
   detail,
   badge,
   accessibilityLabel,
+  position,
 }: AppContentCardProps) {
   return (
-    <View accessible accessibilityLabel={accessibilityLabel} style={styles.card}>
+    <View
+      accessible
+      accessibilityLabel={appendPosition(accessibilityLabel, position)}
+      style={styles.card}
+    >
       <View style={styles.headline}>
         {badge === undefined ? null : <AppStatusBadge label={badge} />}
         <Text style={styles.title}>{title}</Text>
